@@ -1,0 +1,136 @@
+<div class="container">
+  <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">User Form</h1>
+  <form class="form" action="" name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+    <label for=""><h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Username</h2></label>
+    <input
+    placeholder="Username"
+    type="text"
+    style="color: black;"
+    name="Username"
+    [(ngModel)]="form.Username"
+    required
+    minlength="6"
+    maxlength="20"
+    #username="ngModel"
+    [ngClass]="{'invalid': f.submitted && username.errors}"
+  >
+ 
+  @if (f.submitted && username.errors) {
+    <div class="feedback">
+      @if (username.errors['required']) {
+        <div class="inv">Username Is required</div>
+      }@if (username.errors['minlength']) {
+        <div class="inv">Username must contain atleast 6 charecter</div>
+      }@if(username.errors['maxlength']){
+        <div class="inv">Username must be at most 20 charecters</div>
+      }
+    </div>
+   }
+
+
+    <label for=""><h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Email </h2></label>
+    <input placeholder="email" style="color: black;" type="email" 
+    name="email"
+    [(ngModel)]="form.Email"
+    required
+    email
+    #email="ngModel"
+    [ngClass]="{'invalid': f.submitted && email.errors}">
+
+    @if (f.submitted && email.errors) {
+      <div class="feedback">
+        @if (email.errors['required']) {
+          <div class="inv">email Is required</div>
+        }@if (email.errors['email']) {
+          <div class="inv">email is invalid</div>
+        }
+      </div>
+     }
+
+
+      <label for=""><h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Address</h2></label>
+     <input type="text" style="color: black;"
+     placeholder="Address"
+     name="address"
+     [(ngModel)]="form.Address"
+     required
+     minlength="10"
+     #address="ngModel"
+     [ngClass]="{'invalid': f.submitted && address.invalid}"
+     >
+
+    @if (f.submitted && address.errors) {
+      <div class="feedback">
+        @if (address.errors['required']) {
+          <div class="inv">Address Is required</div>
+        }@if (address.errors['minlength']) {
+          <div class="inv">Address must contain atleast 10 charecters</div>
+        }
+      </div>
+     } 
+
+
+     
+    <label for="dob"><h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Date of Birth</h2></label>
+    <input id="dob" style="color: black;" placeholder="date of birth" type="date"
+    name="dob"
+    [(ngModel)]="form.Dob"
+    required
+    #dob="ngModel"
+    [ngClass]="{'invalid': f.submitted && dob.errors}">
+    
+    @if (f.submitted && dob.errors) {
+      <div>
+        @if (dob.errors['required']) {
+          <div class="inv">Dob is required</div>
+        }
+      </div>
+    }
+
+    <label for=""><h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Password </h2></label>
+    <input placeholder="Password" style="color: black;" type="password"
+    name="password"
+    [(ngModel)]="form.Password"
+    required
+    minlength="6"
+    maxlength="30"
+    #password="ngModel"
+    [ngClass]="{'invalid': f.submitted && password.errors}"
+    >
+    @if (f.submitted && password.errors) {
+      <div>
+        @if (password.errors['required']) {
+          <div class="inv">password is required</div>
+        }@if (password.errors['minlength']) {
+          <div class="inv">password must contain atleast 6 charecters</div>
+        }
+      </div>
+    }
+    
+
+    <label for="phone" ><h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Phone Number</h2></label>
+     <input id="phone" style="color: black;" placeholder="phone number" type="tel"
+     name="phone"
+     [(ngModel)]="form.Phone"
+     required
+     pattern="[0-9]{10}"
+     #phone="ngModel"
+    [ngClass]="{'invalid': f.submitted && phone.errors}"
+     >
+     @if (f.submitted && phone.errors) {
+      <div>
+        @if (phone.errors['required']) {
+          <div class="inv">Phone number is required </div>
+        }@if (phone.errors['pattern']) {
+          <div class="inv">Phone Number must contain exactly 10 digits</div>
+        }
+      </div>
+    }
+
+
+     <button type="submit">Save</button>
+
+
+
+  </form>
+</div>
